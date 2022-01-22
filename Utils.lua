@@ -4,5 +4,5 @@ end
 
 function isColliding(gameObjA, gameObjB)
 	return math.abs(gameObjA.x - gameObjB.x) < gameObjA.side
-				 and math.abs(gameObjB.y - gameObjB.y) < gameObjA.side
+				 and math.abs(gameObjA.y - gameObjB.y) < gameObjA.side
 end

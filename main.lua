@@ -17,7 +17,12 @@ function love.load()
 	for i=0,20 do
 		platforms[i] = Platform(10 + i*30, love.graphics.getHeight() - 50)
 	end
-	water = Water(40, love.graphics.getHeight() - 80)
+	waters = {}
+	for i=0,10 do
+		for j=0,10 do
+			waters[i*10+j] = Water(10 + i*30, love.graphics.getHeight() - 50 - j*30)
+		end
+	end
 
 	love.mouse.setVisible(false)
 	love.graphics.setBackgroundColor(
@@ -30,6 +35,8 @@ end
 function love.update(dt)
 	sponge:update(dt)
 
+	sponge:isCollidingWaters(waters)
+	
 	for i,p in ipairs(platforms) do
 		sponge:isCollidingPlatform(p)
 	end
@@ -40,5 +47,7 @@ function love.draw()
 	for i,p in ipairs(platforms) do
 		p:draw()
 	end
-	water:draw()
+	for i,w in ipairs(waters) do
+		w:draw()
+	end
 end
